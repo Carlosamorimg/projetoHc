@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Login Page</title>
+</head>
+<body>
+  <div class="login-container">
+   
+    <h2>Login</h2>
+    <form id="loginForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required><br>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required><br>
+      <br>
+
+      <button type="button" onclick="validateLogin()">Login</button>
+    </form>
+  </div>
+
+  
+  <script>
+    function validateLogin() {
+  var username = document.getElementById('username').value;
+  var password = document.getElementById('password').value;
+
+  // Simulação de validação. Substitua por lógica real no servidor.
+  if (username === 'usuario' && password === 'senha') {
+    alert('Login successful! Redirecting to the next page.');
+    window.location.href='opcoes.html'
+    // Aqui você pode redirecionar para a próxima página ou realizar outras ações necessárias.
+  } else {
+    alert('Invalid username or password. Please try again.');
+  }
+    }
+
+  </script>
+</body>
+</html>

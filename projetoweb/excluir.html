@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Excluir Lembrete</title>
+</head>
+<body>
+  <div class="excluir-lembrete-container">
+    <h2>Excluir Lembrete</h2>
+    <form id="excluirLembreteForm">
+      <label for="tituloExcluir">Título do Lembrete:</label>
+      <select id="tituloExcluir" name="tituloExcluir" required>
+        <!-- Opções para escolher o lembrete -->
+        <option value="Lembrete 1">Lembrete 1</option>
+        <option value="Lembrete 2">Lembrete 2</option>
+        <!-- Adicione mais opções conforme necessário -->
+      </select>
+
+      <button type="button" onclick="buscarEExibirInfo()">Buscar</button>
+
+      <div id="infoLembrete" class="info-lembrete"></div>
+    </form>
+  </div>
+
+  
+
+
+  <script>
+   // Array simulando dados de lembretes
+var lembretes = [
+  { titulo: 'Lembrete 1', descricao: 'Descrição do Lembrete 1', localizacao: 'Localização do Lembrete 1' },
+  { titulo: 'Lembrete 2', descricao: 'Descrição do Lembrete 2', localizacao: 'Localização do Lembrete 2' },
+  // Adicione mais lembretes conforme necessário
+];
+
+// Função para buscar e exibir informações do lembrete
+function buscarEExibirInfo() {
+  var tituloEscolhido = document.getElementById('tituloExcluir').value;
+
+  // Busca pelo título na lista de lembretes
+  var lembreteEncontrado = lembretes.find(function(lembrete) {
+    return lembrete.titulo === tituloEscolhido;
+  });
+
+  // Se o lembrete for encontrado, exibe as informações e o botão de excluir
+  if (lembreteEncontrado) {
+    var infoLembreteDiv = document.getElementById('infoLembrete');
+    infoLembreteDiv.innerHTML = `
+      <p><strong>Título:</strong> ${lembreteEncontrado.titulo}</p>
+      <p><strong>Descrição:</strong> ${lembreteEncontrado.descricao}</p>
+      <p><strong>Localização:</strong> ${lembreteEncontrado.localizacao}</p>
+      <button type="button" onclick="exibirBotaoExcluir()">Excluir Lembrete</button>
+    `;
+  } else {
+    alert('Lembrete não encontrado. Verifique o título e tente novamente.');
+  }
+}
+
+// Função para exibir o botão de excluir
+function exibirBotaoExcluir() {
+  var infoLembreteDiv = document.getElementById('infoLembrete');
+  infoLembreteDiv.innerHTML += '<button type="button" onclick="excluirLembrete()">Confirmar Exclusão</button>';
+}
+
+// Função para excluir o lembrete (simulação)
+function excluirLembrete() {
+  alert('Lembrete excluído com sucesso!');
+  // Você pode adicionar aqui a lógica necessária para atualizar ou redirecionar a página, por exemplo.
+}
+
+
+  </script>
+</body>
+</html>

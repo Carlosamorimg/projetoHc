@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Lembrete Page</title>
+</head>
+<body>
+  <div class="lembrete-container">
+   
+    <h2>Gerenciar Lembretes</h2>
+
+    <!-- Adicionando os botões mencionados -->
+    <button onclick="cadastrarLembrete()">Cadastrar Lembrete</button><br>
+    <button onclick="buscarLembretes()">Busca Geral</button><br>
+    <button onclick="buscarTitulo()">Buscar por Titulo</button><br>
+    <button onclick="editarLembrete()">Editar Lembrete</button><br>
+    <button onclick="excluirLembrete()">Excluir Lembrete</button>
+  </div>
+
+  <script>
+    function cadastrarLembrete(){
+        window.location.href="cadastro.html";
+    }
+    function buscarLembretes(){
+        window.location.href="buscargeral.html";
+    }
+    function buscarTitulo(){
+        window.location.href="buscatitulo.html";
+    }
+    function editarLembrete(){
+        window.location.href="editar.html";
+    }
+    function excluirLembrete(){
+        window.location.href="excluir.html";
+    }
+  </script>
+</body>
+</html>

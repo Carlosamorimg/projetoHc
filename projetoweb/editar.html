@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Editar Lembrete</title>
+</head>
+<body>
+  <div class="editar-lembrete-container">
+    <h2>Editar Lembrete</h2>
+    <form id="editarLembreteForm">
+      <!-- Etapa de busca por título -->
+      <div id="etapaBusca">
+        <label for="tituloBusca">Buscar por Título:</label>
+        <input type="text" id="tituloBusca" name="tituloBusca" required>
+
+        <button type="button" onclick="buscarLembretes()">Buscar</button>
+
+        <!-- Lista de resultados (inicialmente oculta) -->
+        <select id="resultadoBusca" name="resultadoBusca" size="5" onchange="mostrarProximaEtapa()" style="display: none">
+          <!-- Resultados da busca serão adicionados dinamicamente aqui -->
+        </select>
+      </div>
+
+      <!-- Etapa de edição -->
+      <div id="etapaEdicao" style="display: none">
+        <label for="tituloEditar">Título:</label>
+        <input type="text" id="tituloEditar" name="tituloEditar" required>
+
+        <label for="descricaoEditar">Descrição:</label>
+        <textarea id="descricaoEditar" name="descricaoEditar" rows="4" required></textarea>
+
+        <label for="localizacaoEditar">Localização:</label>
+        <input type="text" id="localizacaoEditar" name="localizacaoEditar"><br>
+
+        <button type="button" onclick="salvarEdicao()">Salvar Edição</button>
+        <button type="button" onclick="voltarParaBusca()">Voltar para Busca</button>
+      </div>
+    </form>
+  </div>
+
+  
+
+  
+<script>
+ // Array simulando dados de lembretes
+var lembretes = [
+  { titulo: 'Lembrete 1', descricao: 'Descrição do Lembrete 1', localizacao: 'Localização do Lembrete 1' },
+  { titulo: 'Lembrete 2', descricao: 'Descrição do Lembrete 2', localizacao: 'Localização do Lembrete 2' },
+  // Adicione mais lembretes conforme necessário
+];
+
+// Função para buscar lembretes por título
+function buscarLembretes() {
+  var tituloParaBuscar = document.getElementById('tituloBusca').value.toLowerCase();
+  var resultadoBuscaSelect = document.getElementById('resultadoBusca');
+  resultadoBuscaSelect.innerHTML = ''; // Limpa os resultados anteriores
+
+  lembretes.forEach(function (lembrete, index) {
+    if (lembrete.titulo.toLowerCase().includes(tituloParaBuscar)) {
+      // Adiciona opções ao seletor de resultados
+      var option = document.createElement('option');
+      option.value = index;
+      option.text = lembrete.titulo;
+      resultadoBuscaSelect.add(option);
+    }
+  });
+
+  // Exibe o seletor de resultados apenas se houver resultados
+  resultadoBuscaSelect.style.display = resultadoBuscaSelect.options.length > 0 ? 'block' : 'none';
+
+  // Oculta os campos de edição da etapa anterior
+  ocultarCamposEdicao();
+}
+
+// Função para ocultar os campos de edição
+function ocultarCamposEdicao() {
+  document.getElementById('etapaEdicao').style.display = 'none';
+  document.getElementById('tituloEditar').value = '';
+  document.getElementById('descricaoEditar').value = '';
+  document.getElementById('localizacaoEditar').value = '';
+}
+
+// Função para exibir a próxima etapa (campos de edição e botão de salvar)
+function mostrarProximaEtapa() {
+  var resultadoBuscaSelect = document.getElementById('resultadoBusca');
+  var selectedIndex = resultadoBuscaSelect.options[resultadoBuscaSelect.selectedIndex].value;
+
+  if (selectedIndex !== undefined) {
+    // Preenche os campos de edição com os dados do lembrete selecionado
+    document.getElementById('tituloEditar').value = lembretes[selectedIndex].titulo;
+    document.getElementById('descricaoEditar').value = lembretes[selectedIndex].descricao;
+    document.getElementById('localizacaoEditar').value = lembretes[selectedIndex].localizacao;
+
+    // Exibe a etapa de edição e oculta a etapa de busca
+    document.getElementById('etapaEdicao').style.display = 'block';
+    document.getElementById('etapaBusca').style.display = 'none';
+  } else {
+    // Se nenhum lembrete for selecionado, volta para a etapa de busca
+    ocultarCamposEdicao();
+    document.getElementById('etapaBusca').style.display = 'block';
+  }
+}
+
+// Função para salvar a edição (simulação)
+function salvarEdicao() {
+  alert('Edição salva com sucesso!');
+  // Você pode adicionar aqui a lógica necessária para atualizar ou redirecionar a página, por exemplo.
+
+  // Oculta a etapa de edição e volta para a etapa de busca
+  document.getElementById('etapaEdicao').style.display = 'none';
+  document.getElementById('etapaBusca').style.display = 'block';
+}
+
+// Função para voltar para a etapa de busca
+function voltarParaBusca() {
+  // Oculta a etapa de edição e volta para a etapa de busca
+  document.getElementById('etapaEdicao').style.display = 'none';
+  document.getElementById('etapaBusca').style.display = 'block';
+}
+
+
+
+  </script>
+</body>
+</html>
