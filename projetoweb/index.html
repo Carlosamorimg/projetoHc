@@ -11,11 +11,11 @@
    
     <h2>Login</h2>
     <form id="loginForm">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required><br>
+      <label for="Login">Login:</label>
+      <input type="text" id="Login" name="Login" required><br>
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required><br>
+      <label for="Senha">Senha:</label>
+      <input type="password" id="Senha" name="Senha" required><br>
       <br>
 
       <button type="button" onclick="validateLogin()">Login</button>
@@ -24,19 +24,24 @@
 
   
   <script>
-    function validateLogin() {
-  var username = document.getElementById('username').value;
-  var password = document.getElementById('password').value;
+  async function validateLogin() {
+  var username = document.getElementById('Login').value;
+  var password = document.getElementById('Senha').value;
 
-  // Simulação de validação. Substitua por lógica real no servidor.
-  if (username === 'usuario' && password === 'senha') {
-    alert('Login successful! Redirecting to the next page.');
-    window.location.href='opcoes.html'
-    // Aqui você pode redirecionar para a próxima página ou realizar outras ações necessárias.
-  } else {
-    alert('Invalid username or password. Please try again.');
-  }
+  try {
+    const response = await axios.post('http://localhost:projetoHc/Api_Crud/Api/Login', { username, password });
+    if (response.data.success) {
+      alert('Login successful! Redirecting to the next page.');
+      window.location.href = 'opcoes.html';
+    } else {
+      alert('Invalid username or password. Please try again.');
     }
+  } catch (error) {
+    console.error('Error:', error.response); // Exibir detalhes do erro na console
+    alert('An error occurred. Please check the console for details.');
+  }
+}
+
 
   </script>
 </body>
