@@ -8,22 +8,22 @@ class Login
     public static function verificarLogin($dados)
     {
         $tabela = "usuario";
-        $colunaLogin = "login";
-        $colunaSenha = "senha";
+        $colunaLogin = "Login";
+        $colunaSenha = "Senha";
 
         // Conectando com o banco de dados através da classe (objeto) PDO
         // pegando as informações do config.php (variáveis globais)
         $connPdo = new PDO(dbDrive . ':host=' . dbHost . '; dbname=' . dbName, dbUser, dbPass);
 
         // Usando comando sql que será executado no banco de dados para avalidar login e senha
-        $sql = "select * from $tabela where $colunaLogin =:login and $colunaSenha =:senha";
+        $sql = "select * from $tabela where $colunaLogin =:Login and $colunaSenha =:Senha";
 
         //preparando o comando Select do SQL para ser executado usando método prepare()
         $stmt = $connPdo->prepare($sql);
 
         //configurando (ou mapear) o parametro de busca
-        $stmt->bindValue(':login', $dados['login']);
-        $stmt->bindValue(':senha', $dados['senha']);
+        $stmt->bindValue(':Login', $dados['Login']);
+        $stmt->bindValue(':Senha', $dados['Senha']);
 
         // Executando o comando select do SQL no banco de dados
         $stmt->execute();
