@@ -1,7 +1,7 @@
 <?php
 include "Conexao.php";
 //include "Lembretes.php";
-//require_once 'Conexao.php'; // ou include 'config.php'
+require_once 'Conexao.php'; // ou include 'config.php'
 class Login
 {
     //Criamos uma função para verificar ou avalidar login e senha

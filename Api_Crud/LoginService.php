@@ -1,6 +1,7 @@
 <?php
 // arquivo de controle
 include 'Login.php';
+include 'Conexao.php';
 
 class LoginService
 {

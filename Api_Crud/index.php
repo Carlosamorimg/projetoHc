@@ -3,8 +3,7 @@
 
 include 'LembretesService.php';
 include "LoginService.php";
-require_once "LembretesService.php";
-require_once "LoginServece.php";
+
 
 
 
